@@ -8,9 +8,7 @@ session_start();
   <title>Linux Wizard - LOGIN 2012</title>
   
   <script src="jquery.min.js"></script>
-  
-  
-  
+<!--  <script src="timerjs.js"></script> -->
   
   <script type="text/javascript" charset="UTF-8">
   var imgsource;
@@ -21,7 +19,6 @@ session_start();
 	//eval(result);
 	imgsource=result;
 	//alert(imgsource);
-	
 	document.getElementById("background").src=imgsource;
 	
 	//document.body.style.backgroundColor="#000";
@@ -33,7 +30,7 @@ session_start();
   x=0;
   flag=0;
   
-  function hideanswered(target) { 
+  function hideanswered(target) {
     document.getElementById(target).style.visibility="hidden"; 
   }
 
@@ -46,16 +43,11 @@ session_start();
    
    $.get("check.php?qno="+target+"&uid="+uid,function(flag) {
 		
-		//alert(flag); 
              if (flag==1) 
        { 
-	   //alert(flag);
-	   
-          alert(question);
      var name=prompt(str,"");
   
       if (name != '') {
-          //alert(value);
    //   location.href="validate.php?answer=" + name + "&qno=" + target; 
 	 //window.open("validate_FLOP.php?answer=" + name + "&qno=" + target+"&uid="+uid,'_blank');
 	  $.get("validate_FLOP.php?answer="+name+"&qno="+target+"&uid="+uid,function(result) {
@@ -80,19 +72,16 @@ session_start();
   </script>
   
   </head>
-  
-  <img style="position:absolute;z-index:-1;" id="background" src="temp.jpg" height="500px" width="500px">
-  
   <body>
+   <img style="position:absolute;z-index:-1;" id="background" src="shells.jpg" height="508px" width="508px" />
   
-  <div align="justify">
+    <div align="justify">
     <!--<a href="#" onclick="hide('id1');">hide 2 divs</a><br>
   -->
-    
-    <?php
+<?php
   $uid=$_SESSION["uid"];
-include "database.php";
- /* $username = "root";
+   include "database.php";
+/* $username = "root";
   $password = "justtobesafe";
   $host = "localhost";
   $database = "test";
@@ -140,8 +129,6 @@ include "database.php";
     $options='options'.$i;
     $answer='answer'.$i;
   
-  
-  
    $_SESSION[$qno]=$vname[0];
    $_SESSION[$question]=$vname[1];
    $_SESSION[$options]=$vname[2];
@@ -150,9 +137,8 @@ include "database.php";
   //echo $q;
   
   $q=$q." ".$vname[2];
-  $test = "hello";
   {
-    echo '<img src="data:image/jpeg;base64,' . base64_encode( $vname[5] ) .'" style="position:relative;left:0px;top:0px;z-index:1;" id='.$i.' height="100px" width="100px" onclick="hide(id,\''.$q.'\',\''.$uid.'\')" />';
+    echo '<img src="data:image/jpeg;base64,' . base64_encode( $vname[5] ) .'" border="1" style="border-color:white;position:relative;left:0px;top:0px;z-index:1;" id='.$i.' height="100px" width="100px" onclick="hide(id,\''.$q.'\',\''.$uid.'\')" />';
    
   }
   
@@ -188,10 +174,12 @@ include "database.php";
   </form>
   -->
   </div>
-  <div id="div1" style="position:relative; left:600px" >
+  <div id="div1" name="txtDiv" style="position:relative; left:600px" >
       Your ID is : <br /> 
       <input type="text" value='<?php echo $uid;  ?>' disabled="disabled" />
-    </div>
+<!--      <input id="txttimer" readonly="true" type="text" value="10:05" border="0" name="disp" > -->
   </div>
+  </div>
+  
   </body>
   </html>

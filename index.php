@@ -2,6 +2,9 @@
 session_start();
 if (isset($_POST["textname"]))	{
 	$_SESSION["uid"] = $_POST["textname"];
+	$_SESSION["starthour"] = date("H");
+	$_SESSION["min"] = "10";
+	$_SESSION["sec"] = "11";
 	include "lw1.php";
 } else if (isset($_SESSION["uid"]))	{
 	include "lw1.php";
@@ -98,7 +101,7 @@ a:hover, a:active, a:focus { /* this group of selectors will give a keyboard nav
 <body>
 
 <div class="container">
-  <div class="header"><a href="#"><img src="" alt="Insert Logo Here" name="Insert_logo" width="180" height="90" id="Insert_logo" style="background: #C6D580; display:block;" /></a> 
+  <div class="header"><a href="#"><img src="logo.gif" alt="LOGIN 2012" name="logo" width="180" height="90" id="loginlogo" style="background: #000000; display:block;" /></a> 
     <!-- end .header --></div>
   <div class="content">
 
