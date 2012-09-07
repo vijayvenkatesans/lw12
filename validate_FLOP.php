@@ -25,8 +25,10 @@ $uid=$_GET["uid"];
 
 
 //if($answer!=1 && $answer!=2 && $answer!=3 && $answer!=4)
-if($answer==''||$answer==NULL)
-$answer=0;
+if($answer==''||$answer==NULL||$answer==null)	{
+	$answer=0;
+	echo "gaali";
+}
 
 $query="select * from lw where qno=".$qno;
 $result=mysql_query($query);
@@ -54,6 +56,7 @@ if(strcmp($result["type"],"mcq")==0)
 if(strcmp($result["type"],"cmd")==0)
 {  
  $delimiter="$@/";
+ $answer=preg_replace('/\s\s+/', ' ',$answer);
  $array=explode($delimiter,$result["ans"]);
 	if(in_array($answer,$array))
       {
@@ -65,8 +68,8 @@ if(strcmp($result["type"],"cmd")==0)
       }
 	else 
       {
-	$query="insert into user_ques values('$uid','$qno','$answer',-1)";
-	mysql_query($query);
+	//$query="insert into user_ques values('$uid','$qno','$answer',-1)";
+	//mysql_query($query);
 	echo "false";
 
       }
@@ -74,20 +77,26 @@ if(strcmp($result["type"],"cmd")==0)
 
 if(strcmp($result["type"],"exe")==0) 
 {
-//echo $answer;
+// echo '<script> alert('.$answer.') </script>';
+// echo "<br>".$answer;
 $var= shell_exec($answer);
+// echo "<br>".$var;
 $var1=$result["ans"];
 $var=trim($var);
 $var1=trim($var1);
+$var=rtrim($var," ");
+//echo "<br>".$var;
+// echo "<br>".$var1;
 
-//echo $var;
-//echo $var1;
 
+// echo "<br>".strlen($var);
+// echo "<br>".strlen($var1);
 
-//echo '<br>'.strcmp($var,$var1)	;
+// echo '<br>'.strcmp($var,$var1)	;
 if(strcmp($var,$var1)==0)
 {
-$query="insert into user_ques values('$uid','$qno','$answer',1)";
+$query="insert into user_ques values('".$uid."','".$qno."','".addslashes($answer)."',1)";
+// echo $query;
 mysql_query($query,$link);
 $query="update score set score=score+1 where uid='$uid'";
 mysql_query($query,$link);

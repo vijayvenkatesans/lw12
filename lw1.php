@@ -46,18 +46,18 @@ session_start();
              if (flag==1) 
        { 
      var name=prompt(str,"");
-  
       if (name != '') {
    //   location.href="validate.php?answer=" + name + "&qno=" + target; 
 	 //window.open("validate_FLOP.php?answer=" + name + "&qno=" + target+"&uid="+uid,'_blank');
 	  $.get("validate_FLOP.php?answer="+name+"&qno="+target+"&uid="+uid,function(result) {
-		 
+
               if (result=='true')
                {
                               document.getElementById(target).style.visibility="hidden";
                }
-                 else
-	          alert('Wrong Answer');
+              else if (result =='false') {
+	               alert('Wrong Answer');
+              }
 	     
 
              });
@@ -71,8 +71,8 @@ session_start();
    }
   </script>
   
-  </head>
-  <body>
+  </head oncontextmenu = "return false;">
+  <body oncontextmenu = "return false;">
    <img style="position:absolute;z-index:-1;" id="background" src="shells.jpg" height="508px" width="508px" />
   
     <div align="justify">
